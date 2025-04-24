@@ -1,21 +1,13 @@
 package com.example.ecommerce.migration.core.infrastructure.postgresql.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "sales")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class SaleEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,4 +28,63 @@ public class SaleEntity {
 
     @Column(name = "sales_amount", nullable = false)
     private BigDecimal salesAmount;
+
+    public SaleEntity() {}
+
+    public SaleEntity(Long id, ProductEntity product, VendorEntity vendor, LocalDateTime salesDatetime, Integer quantity, BigDecimal salesAmount) {
+        this.id = id;
+        this.product = product;
+        this.vendor = vendor;
+        this.salesDatetime = salesDatetime;
+        this.quantity = quantity;
+        this.salesAmount = salesAmount;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ProductEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductEntity product) {
+        this.product = product;
+    }
+
+    public VendorEntity getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(VendorEntity vendor) {
+        this.vendor = vendor;
+    }
+
+    public LocalDateTime getSalesDatetime() {
+        return salesDatetime;
+    }
+
+    public void setSalesDatetime(LocalDateTime salesDatetime) {
+        this.salesDatetime = salesDatetime;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getSalesAmount() {
+        return salesAmount;
+    }
+
+    public void setSalesAmount(BigDecimal salesAmount) {
+        this.salesAmount = salesAmount;
+    }
 }
